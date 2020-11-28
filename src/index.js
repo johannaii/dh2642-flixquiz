@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { auth, db } from "./services/config";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App authorization={auth} database={db}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
