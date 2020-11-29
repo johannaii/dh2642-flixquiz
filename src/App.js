@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import DataAdder from './components/DataAdder';
 
-const App = ({ autorization, database }) => {
-  const [notes, setNotes] = useState([]);
+const App = ({ authorization, database }) => {
+  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
-    const notesList = [];
-    database?.ref("all_notes/0001").on("value", (snapshot) => {
+    const movieList = [];
+    database?.ref("movies").on("value", (snapshot) => {
       snapshot.forEach((snap) => {
-        notesList.push(snap.val());
+        movieList.push(snap.val());
       });
-      setNotes(notesList);
+      setMovies(movieList);
       setLoading(false);
     });
   }, []);
 
   return (
-    <div className="App">
-      {loading ? (
-        <span>IS LOADING</span>
-      ) : (
-        notes.map((note) => <div key={note.note_id}>{note.content}</div>)
-      )}
-    </div>
+      <div className="App">
+        {loading ? (
+            <span>IS LOADING</span>
+        ) : (
+            movies.map((movie) => <div key={movie.title}>{movie.title}</div>)
+        )}
+        <DataAdder database={database}/>
+      </div>
   );
 };
 
