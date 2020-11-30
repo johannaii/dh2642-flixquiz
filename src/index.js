@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { auth, db } from "./services/config";
+import MovieModel from './model/MovieModel';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authorization={auth} database={db}/>
+    <App authorization={auth} database={db} model={MovieModel}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
