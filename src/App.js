@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import DataAdder from './components/DataAdder';
 
-const App = ({ authorization, database }) => {
+const App = ({ authorization, database, model }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
