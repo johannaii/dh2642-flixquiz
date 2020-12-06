@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { auth, db } from "./services/config";
+import {auth, db} from "./services/config";
 import MovieModel from './model/MovieModel';
+import {UserProvider} from "./context/activeUserContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App authorization={auth} database={db} model={MovieModel}/>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <UserProvider>
+            <App authorization={auth} database={db} model={MovieModel}/>
+        </UserProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
