@@ -1,0 +1,11 @@
+.debug {
+  border-style: solid;
+  height: 100vmax;
+}
+
+.flexParent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
