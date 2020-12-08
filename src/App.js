@@ -10,7 +10,6 @@ import Game from "./presenter/game";
 import Highscores from "./presenter/highscores";
 import Highscore from "./presenter/highscore";
 import Profile from "./presenter/profile";
-import PacManLoader from "react-spinners/PacmanLoader"
 
 const App = ({ authorization, database, model }) => {
   const [movies, setMovies] = useState([]);
@@ -48,7 +47,7 @@ const App = ({ authorization, database, model }) => {
         </Route>
         <Route path="/profile">
           <Profile database={database}/>
-        </Route>
+        </Route>0
         <Route path="/movies">
           <Movies movies={movies} chooseMovie={chooseMovie}/>
         </Route>
