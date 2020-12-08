@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import HighscoreView from "../view/highscoreView";
 
 const Highscore = ({ movie, database }) => {
@@ -21,18 +21,10 @@ const Highscore = ({ movie, database }) => {
           isLoading(false);
         });
     } else {
-      history.push("/highscores")
+      history.push("/highscores");
     }
   }, []);
 
-  return (
-    <div>
-      {loading ? (
-        <span>IS LOADING</span>
-      ) : (
-        <HighscoreView highscore={highscore} />
-      )}
-    </div>
-  );
+  return <HighscoreView movie={movie} highscore={highscore} />;
 };
 export default Highscore;

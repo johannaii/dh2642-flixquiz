@@ -9,6 +9,8 @@ import Movies from "./presenter/movies";
 import Game from "./presenter/game";
 import Highscores from "./presenter/highscores";
 import Highscore from "./presenter/highscore";
+import Profile from "./presenter/profile";
+import PacManLoader from "react-spinners/PacmanLoader"
 
 const App = ({ authorization, database, model }) => {
   const [movies, setMovies] = useState([]);
@@ -22,7 +24,7 @@ const App = ({ authorization, database, model }) => {
         movieList.push(snap.val());
       });
       setMovies(movieList);
-      setLoading(false);
+      //setLoading(false);
     });
   }, []);
 
@@ -35,12 +37,6 @@ const App = ({ authorization, database, model }) => {
       <Switch>
         <Route exact path="/">
           <div className="App">
-            {loading ? (
-              <span>IS LOADING</span>
-            ) : (
-              movies.map((movie) => <div key={movie.title}>{movie.title}</div>)
-            )}
-            <DataAdder database={database} />
             <Home database={database} />
           </div>
         </Route>
@@ -49,6 +45,9 @@ const App = ({ authorization, database, model }) => {
         </Route>
         <Route path="/login">
           <SignIn database={database} />
+        </Route>
+        <Route path="/profile">
+          <Profile database={database}/>
         </Route>
         <Route path="/movies">
           <Movies movies={movies} chooseMovie={chooseMovie}/>

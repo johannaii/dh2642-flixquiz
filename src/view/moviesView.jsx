@@ -1,21 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Card } from "semantic-ui-react";
 import "../styling/movieview.css";
 
 const MoviesView = ({ movies, chooseMovie }) => (
-  <div className={"debug"}>
-    <div className={"flexParent"}>
+  <div className={"movieWrapper"}>
+    <span className="moviesHeader">
       Which of the movies do you want to play?
+    </span>
+    <div className="cardsName">
       {movies?.map((movie, key) => (
         <Link to={`/game/${movie.urlid}`} key={movie.urlid}>
-          <button
+          <Card
             key={key}
+            className="movieCard"
             onClick={() => {
               chooseMovie(movie);
             }}
           >
             {movie.title}
-          </button>
+          </Card>
         </Link>
       ))}
     </div>

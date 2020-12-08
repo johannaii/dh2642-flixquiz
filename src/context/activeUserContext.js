@@ -5,7 +5,7 @@ const UserStateProvider = UserStateContext.Provider;
 
 function UserProvider({children}) {
 
-    const [user, setUser] = useState('hej');
+    const [user, setUser] = useState('');
 
     return (
         <UserStateProvider value={{user, setUser}}>
