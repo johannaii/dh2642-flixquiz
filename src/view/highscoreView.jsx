@@ -1,14 +1,29 @@
 import React from "react";
+import "../styling/highscoreview.css";
 
-const HighscoreView = ({ highscore }) => (
-  <div className={"debug"}>
-    HIGHSCORE
-    <div className={"flexParent"}>
-      {highscore?.sort(compareHighscore).map((user, key) => (
-        <div key={key}>
-          user: {user.user} score: {user.score}
-        </div>
-      ))}
+const HighscoreView = ({ movie, highscore }) => (
+  <div className={"highscoreWrapper"}>
+    <span className="highscoreHeader">HIGHSCORE</span>
+    <div className="highscoreContentWrapper">
+      <span className="highscoreContentHeader">{movie.title}</span>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {highscore?.sort(compareHighscore).map((user, key) => (
+            <tr>
+              <td>{key + 1}</td>
+              <td>{user.user} </td>
+              <td>{user.score}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   </div>
 );

@@ -1,0 +1,27 @@
+.homeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-image: linear-gradient(to bottom,#609CA9, #FFF);
+  height: 100%;
+}
+
+.header {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 70px;
+  font-weight: bold;
+  color: #FFF;
+  font-style: bold;
+  margin-bottom: 40px;
+}
+
+.ui.button.signIn {
+  color: #FFFFFF !important;
+  border: solid !important;
+  border-color: #FFF !important;
+  border-width: 3px !important;
+  border-radius: 10px !important;
+  background:  rgba(96, 156, 169, 0.6) !important;
+  margin: 10px !important;
+}

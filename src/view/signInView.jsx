@@ -1,10 +1,13 @@
 import React from "react";
+import {Button, Input } from "semantic-ui-react";
+import "../styling/signin.css"
 
 const SignInView = ({userChange, createPlayer}) => (
-    <div>
-        <input onChange={event => userChange(event)}
+    <div className="signWrapper">
+        <span className="informationText">Enter your username to continue.</span>
+        <Input size='big' placeholder="Username" onChange={event => userChange(event)}
                type={"text"}/>
-        <button onClick={() => createPlayer()}>Sign in</button>
+        <Button className="sign" size='large' onClick={() => createPlayer()}>Sign in</Button>
     </div>
 );
 

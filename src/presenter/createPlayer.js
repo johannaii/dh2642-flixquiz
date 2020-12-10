@@ -27,7 +27,7 @@ const CreatePlayer = ({ database }) => {
         userId,
       });
       setUser(userId);
-      history.push("/movies");
+      history.push("/profile");
     }
   };
 

@@ -24,7 +24,7 @@ const SignIn = ({database}) => {
         if (userList.find((user) => user.userId === userId)) {
             console.log("Great!")
             setUser(userId);
-            history.push('/movies')
+            history.push('/profile')
         } else {
             console.log("This user doesn't exist")
         }
