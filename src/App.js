@@ -10,11 +10,31 @@ import Game from "./presenter/game";
 import Highscores from "./presenter/highscores";
 import Highscore from "./presenter/highscore";
 import Profile from "./presenter/profile";
+import { Credentials } from "./Credentials";
+import axios from "axios";
 
 const App = ({ authorization, database, model }) => {
+  // Spotify get token
+  const spotify = Credentials();
+  const [token, setToken] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [chosenMovie, setChosenMovie] = useState("");
+
+  useEffect(() => {
+    axios("https://accounts.spotify.com/api/token", {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization:
+          "Basic " + btoa(spotify.ClientId + ":" + spotify.ClientSecret),
+      },
+      data: "grant_type=client_credentials",
+      method: "POST",
+    }).then((tokenResponse) => {
+      setToken(tokenResponse.data.access_token);
+    });
+  }, [spotify.ClientId, spotify.ClientSecret]);
+  // End of spotify get token
 
   useEffect(() => {
     const movieList = [];
@@ -23,12 +43,12 @@ const App = ({ authorization, database, model }) => {
         movieList.push(snap.val());
       });
       setMovies(movieList);
-      //setLoading(false);
+      setLoading(false);
     });
   }, []);
 
   const chooseMovie = (movie) => {
-    setChosenMovie(movie)
+    setChosenMovie(movie);
   };
 
   return (
@@ -46,16 +66,20 @@ const App = ({ authorization, database, model }) => {
           <SignIn database={database} />
         </Route>
         <Route path="/profile">
-          <Profile database={database}/>
-        </Route>0
-        <Route path="/movies">
-          <Movies movies={movies} chooseMovie={chooseMovie}/>
+          <Profile database={database} />
         </Route>
-        <Route path="/game/:movie">
-          <Game movie={chosenMovie}/>
+        <Route path="/movies">
+          <Movies movies={movies} chooseMovie={chooseMovie} />
+        </Route>
+        <Route path="/game/">
+          <Game token={token} movie={chosenMovie} />
         </Route>
         <Route exact path="/highscores">
-          <Highscores movies={movies} database={database} chooseMovie={chooseMovie}/>
+          <Highscores
+            movies={movies}
+            database={database}
+            chooseMovie={chooseMovie}
+          />
         </Route>
         <Route path="/highscores/:movie">
           <Highscore movie={chosenMovie} database={database} />
