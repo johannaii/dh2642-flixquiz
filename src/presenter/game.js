@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {useEffect, useState, useContext} from "react";
 import GameView from "../view/gameView";
 import QuizCorrectAnswerView from "../view/quizCorrectAnswerView";
 import GameEndView from "../view/gameEndView";
 import axios from "axios";
-import { GameProvider } from "../context/activeGameContext";
+import {GameProvider} from "../context/activeGameContext";
+import {MovieStateContext} from "../context/activeMovieContext";
+import {UserStateContext} from "../context/activeUserContext";
 
 // Declares all functions used in the view
 // Listeners
 // Props...
 // Variables
-function Game({ token, database, movie }) {
+function Game({token, database}) {
     // setStates
     //const { currentQuestion, setCurrentQuestion } = useContext(GameProvider);
     const [answered, setAnswered] = useState(0); // Show answer or not
@@ -21,6 +23,9 @@ function Game({ token, database, movie }) {
     // for currentQuestion
     const [correctAlternative, setCorrectAlternative] = useState("");
     const [otherAlternatives, setOtherAlternatives] = useState(["", "", ""]);
+
+    const movie = useContext(MovieStateContext);
+
 
     //
     // Collecting first quiz from firebase
@@ -165,7 +170,7 @@ function Game({ token, database, movie }) {
                 );
             }
         } else {
-            return <GameEndView score={"1000"} />;
+            return <GameEndView score={"1000"}/>;
         }
     } else return <div>Is loading</div>;
 }

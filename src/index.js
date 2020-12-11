@@ -10,9 +10,13 @@ import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
     <React.StrictMode>
-        <UserProvider>
-            <App authorization={auth} database={db} model={MovieModel} />
-        </UserProvider>
+        <MovieProvider>
+            <GameProvider>
+                <UserProvider>
+                    <App authorization={auth} database={db} model={MovieModel}/>
+                </UserProvider>
+            </GameProvider>
+        </MovieProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
