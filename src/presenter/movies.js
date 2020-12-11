@@ -5,11 +5,21 @@ import {MovieStateContext} from "../context/activeMovieContext";
 const Movies = ({ movies }) => {
   const [availableMovies, setAvailableMovies] = useState(movies);
   const {setMovie} = useContext(MovieStateContext);
+  const [loading, isLoading] = useState(true);
 
   useEffect(() => {
-    setAvailableMovies(movies);
+    if (movies.length > 0) {
+      isLoading(false);
+      setAvailableMovies(movies);
+    }
   }, [movies]);
 
-  return <MoviesView movies={availableMovies} chooseMovie={setMovie} />;
+  return (
+    <MoviesView
+      movies={availableMovies}
+      chooseMovie={setMovie}
+      loading={loading}
+    />
+  );
 };
 export default Movies;

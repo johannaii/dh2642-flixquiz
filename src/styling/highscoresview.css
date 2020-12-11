@@ -30,6 +30,14 @@
 
 
 .cardsWrapper {
+  height: 400px;
+  padding: 0px 40px;
+  width: max-content;
+  overflow-y: scroll;
+}
+
+.cardsWrapper::-webkit-scrollbar {
+  width: 13px;
 }
 
 .ui.card.higscoreCard {
@@ -40,7 +48,8 @@
   color: #676565;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
-  width: 120px;
+  text-align: center;
+  width: 140px;
   height: 120px;
   margin: 20px !important;
 }

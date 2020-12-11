@@ -37,3 +37,13 @@
   background:  rgba(103, 101, 101, 0.6) !important;
   margin: 10px !important;
 }
+
+.ui.button.logOutButton {
+  color: #FFFFFF !important;
+  border: solid !important;
+  border-color: #FFF !important;
+  border-width: 3px !important;
+  border-radius: 10px !important;
+  background:  rgba(96, 156, 169, 0.6) !important;
+  margin: 10px !important;
+}
