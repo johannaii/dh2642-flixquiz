@@ -1,19 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {auth, db} from "./services/config";
-import MovieModel from './model/MovieModel';
-import {UserProvider} from "./context/activeUserContext";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { auth, db } from "./services/config";
+import MovieModel from "./model/MovieModel";
+import { UserProvider } from "./context/activeUserContext";
+import { GameProvider } from "./context/activeGameContext";
 
 ReactDOM.render(
     <React.StrictMode>
         <UserProvider>
-            <App authorization={auth} database={db} model={MovieModel}/>
+            <App authorization={auth} database={db} model={MovieModel} />
         </UserProvider>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

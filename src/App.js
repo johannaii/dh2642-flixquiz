@@ -78,7 +78,11 @@ const App = ({ authorization, database, model }) => {
                     <Movies movies={movies} chooseMovie={chooseMovie} />
                 </Route>
                 <Route path="/game/">
-                    <Game token={token} movie={chosenMovie} />
+                    <Game
+                        token={token}
+                        database={database}
+                        movie={"Lion king"}
+                    />
                 </Route>
                 {/*
         <Route path="/game/:movie">
