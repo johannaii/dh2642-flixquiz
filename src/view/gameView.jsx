@@ -1,13 +1,16 @@
 import React from "react";
 
 const GameView = ({
-    currentQuestion,
-    searchTrack,
-    searchAlbum,
+    currentQuestionNum,
     nextQuestion,
-    testIds,
-    findOtherAlternatives,
+    question,
+    correctTrackId,
+    correctAlternative,
+    wrongAlternatives
 }) => {
+    const answerAlternatives = [correctAlternative, wrongAlternatives[0], wrongAlternatives[1], wrongAlternatives[2]];
+    //console.log("In game view:");
+    //console.log(answerAlternatives);
     // Circle of Life id = "0juMU08O9byWiRBtKM1j5E";
     // Circle of lifes album id ="7e8y48Z2fkJNGBOKSECCeS"
 
@@ -22,12 +25,12 @@ const GameView = ({
 
     return (
         <div>
-            <h1>{"Question #" + (currentQuestion + 1)}</h1>
-            <div>What is this song called?</div>
+            <h1>{"Question #" + (currentQuestionNum + 1)}</h1>
+            <div>{question}</div>
             <iframe
                 src={
                     "https://open.spotify.com/embed/track/" +
-                    testIds[currentQuestion] /* correctAlternative.id */
+                    correctTrackId /* correctAlternative.id */
                 }
                 width="80"
                 height="80"
@@ -38,100 +41,13 @@ const GameView = ({
             <div>
                 {/*random order on these 4*/}
                 {/* Randomly pick three others from album */}
-                {/*findOtherAlternatives(correctAlternative.album.name)*/}
-                {findOtherAlternatives("7e8y48Z2fkJNGBOKSECCeS")}
-                <button> Track2 </button> {/*wrongAlternatives[0].name*/}
-                <button>{searchTrack(testIds[currentQuestion])}</button>
-                {/*correctAlternative.name*/}
-                <button> Track3 </button> {/*wrongAlternatives[1].name*/}
-                <button> Track4 </button> {/*wrongAlternatives[2].name*/}
+            <button>{answerAlternatives[0]}</button>
+            <button>{answerAlternatives[1]}</button>
+            <button>{answerAlternatives[2]}</button>
+            <button>{answerAlternatives[3]}</button>
             </div>
             <button onClick={nextQuestion}>Submit/ Show answer</button>
             {/*This shows after nextQuestion button is pressed */}
-            {currentQuestion++}
-            <h1>{"Question #" + (currentQuestion + 1)}</h1>
-            <div>What is this song called?</div>
-            <iframe
-                src={
-                    "https://open.spotify.com/embed/track/" +
-                    testIds[currentQuestion]
-                }
-                width="80"
-                height="80"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-            ></iframe>
-            <div>
-                {/*random order on these 4*/}
-                <button>{searchTrack(testIds[currentQuestion])}</button>{" "}
-                {/*correctAlternative.name*/}
-                {/* Randomly pick three others from album */}
-                {/*findOtherAlternatives(correctAlternative.album.name)*/}
-                {findOtherAlternatives("7e8y48Z2fkJNGBOKSECCeS")}
-                <button> Track2 </button> {/*wrongAlternatives[0].name*/}
-                <button> Track3 </button> {/*wrongAlternatives[1].name*/}
-                <button> Track4 </button> {/*wrongAlternatives[2].name*/}
-            </div>
-            <button onClick={nextQuestion}>Submit/ Show answer</button>
-            {currentQuestion++}
-            <h1>We can also have </h1>
-            <h1>{"Question #" + (currentQuestion + 1)}</h1>
-            <div>
-                {
-                    "Which of these is the correct song? The song is called Hoist the Colours"
-                }
-            </div>
-            {/*correctAlternative.name */}
-            <div>
-                <iframe
-                    src={
-                        "https://open.spotify.com/embed/track/" +
-                        testIds[currentQuestion]
-                    }
-                    width="80"
-                    height="80"
-                    frameBorder="0"
-                    allowtransparency="true"
-                    allow="encrypted-media"
-                ></iframe>
-                <iframe
-                    src={
-                        "https://open.spotify.com/embed/track/" +
-                        testIds[currentQuestion]
-                    }
-                    width="80"
-                    height="80"
-                    frameBorder="0"
-                    allowtransparency="true"
-                    allow="encrypted-media"
-                ></iframe>
-                <iframe
-                    src={
-                        "https://open.spotify.com/embed/track/" +
-                        testIds[currentQuestion]
-                    }
-                    width="80"
-                    height="80"
-                    frameBorder="0"
-                    allowtransparency="true"
-                    allow="encrypted-media"
-                ></iframe>
-                <iframe
-                    src={
-                        "https://open.spotify.com/embed/track/" +
-                        testIds[currentQuestion]
-                    }
-                    width="80"
-                    height="80"
-                    frameBorder="0"
-                    allowtransparency="true"
-                    allow="encrypted-media"
-                ></iframe>
-                <div>
-                    <input></input> <button>Finish quiz/ Show answer</button>
-                </div>
-            </div>
         </div>
     );
 };

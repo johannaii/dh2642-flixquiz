@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css'
 ReactDOM.render(
     <React.StrictMode>
         <UserProvider>
-            <App authorization={auth} database={db} model={MovieModel}/>
+            <App authorization={auth} database={db} model={MovieModel} />
         </UserProvider>
     </React.StrictMode>,
     document.getElementById('root')
