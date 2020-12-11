@@ -5,7 +5,7 @@ const MovieStateProvider = MovieStateContext.Provider;
 
 function MovieProvider({children}) {
 
-    const [movie, setMovie] = useState('hej');
+    const [movie, setMovie] = useState('');
 
     return (
         <MovieStateProvider value={{movie, setMovie}}>

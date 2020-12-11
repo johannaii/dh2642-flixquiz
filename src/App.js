@@ -69,10 +69,10 @@ const App = ({ authorization, database, model }) => {
           <Profile database={database} />
         </Route>
         <Route path="/movies">
-          <Movies movies={movies} chooseMovie={chooseMovie} />
+          <Movies movies={movies} />
         </Route>
         <Route path="/game/">
-          <Game token={token} movie={chosenMovie} />
+          <Game token={token} database={database} />
         </Route>
         <Route exact path="/highscores">
           <Highscores

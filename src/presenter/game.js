@@ -18,40 +18,31 @@ function Game({token, database}) {
     const [finishedQuiz, setFinishedQuiz] = useState(0); // Finished quiz or not
     const [currentQuestion, setCurrentQuestion] = useState(0); // Shows question #currentQuestion
     //const [viewQuestion, setViewQuestion] = useState(0);
-    //const [currentQuiz, setCurrentQuiz] = useState("Lion king");
 
     // for currentQuestion
     const [correctAlternative, setCorrectAlternative] = useState("");
     const [otherAlternatives, setOtherAlternatives] = useState(["", "", ""]);
 
-    const movie = useContext(MovieStateContext);
-
+    const {movie} = useContext(MovieStateContext);
 
     //
     // Collecting first quiz from firebase
     //
     const [loading, setLoading] = useState(true);
-    const [quiz, setQuiz] = useState([]);
 
     // Make sure to find quiz with title of chosen movie now just picks first quiz
     useEffect(() => {
-        const quizs = [];
-        database?.ref("movies").on("value", (snapshot) => {
-            snapshot.forEach((snap) => {
-                // Pick out chosen movie quiz
-                if (snap.val().title === movie) quizs.push(snap.val());
-            });
-            setQuiz(quizs[0]);
+
             setLoading(false);
             // Setup first question
-            const questionInfo = quizs[0].questions[currentQuestion + 1];
+            const questionInfo = movie.questions[currentQuestion + 1];
 
             const correctTrackId = questionInfo.spotifyid;
             const trackName = searchForSong(correctTrackId);
 
-            const albumId = quizs[0].spotifyid;
+            const albumId = movie.spotifyid;
             searchForOtherAlternatives(albumId, trackName);
-        });
+
     }, []);
 
     //console.log(quiz);
@@ -106,6 +97,7 @@ function Game({token, database}) {
                     if (count < 3 && track.name !== trackName) {
                         tracks[count] = track.name;
                         count++;
+                        console.log(track.name)
                     }
                 });
                 setOtherAlternatives(tracks);
@@ -121,14 +113,14 @@ function Game({token, database}) {
             // Display correct answer in green, and if wrong chosen that one in red
             // check if correct answer then give points
             // calculate points and add to totalPointsSoFar
-        } else if (currentQuestion < quiz.questions.length - 2) {
+        } else if (currentQuestion < movie.questions.length - 2) {
             const nextQuestionNum = currentQuestion + 1;
             setCurrentQuestion(nextQuestionNum);
             setAnswered(0);
-            const questionInfo = quiz.questions[currentQuestion + 1];
+            const questionInfo = movie.questions[currentQuestion + 1];
 
             const correctTrackId = questionInfo.spotifyid;
-            const albumId = quiz.spotifyid;
+            const albumId = movie.spotifyid;
 
             setAnswers(questionInfo, correctTrackId, albumId);
         } else {
@@ -143,7 +135,7 @@ function Game({token, database}) {
     // Displays one of three views, quiz, quiz but showing answers, endGameView
     if (!loading) {
         if (!finishedQuiz) {
-            const questionInfo = quiz.questions[currentQuestion + 1];
+            const questionInfo = movie.questions[currentQuestion + 1];
             const question = questionInfo.question;
             const correctTrackId = questionInfo.spotifyid;
 

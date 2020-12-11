@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {auth, db} from "./services/config";
 import MovieModel from './model/MovieModel';
 import {UserProvider} from "./context/activeUserContext";
+import {MovieProvider} from "./context/activeMovieContext";
+import {GameProvider} from "./context/activeGameContext";
 import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
