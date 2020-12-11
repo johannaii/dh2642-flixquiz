@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {auth, db} from "./services/config";
 import MovieModel from './model/MovieModel';
 import {UserProvider} from "./context/activeUserContext";
-import 'semantic-ui-css/semantic.min.css'
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
     <React.StrictMode>

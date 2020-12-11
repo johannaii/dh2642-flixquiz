@@ -1,17 +1,19 @@
-import React, {useState, createContext} from 'react';
+import React, { useState, createContext } from "react";
 
-const UserStateContext = createContext('');
+const UserStateContext = createContext("");
 const UserStateProvider = UserStateContext.Provider;
 
-function UserProvider({children}) {
+function UserProvider({ children }) {
+  const localStorageUser = localStorage.getItem("activeUser");
+  let activeUser = "";
+  if (localStorageUser) {
+    activeUser = localStorageUser;
+  }
+  const [user, setUser] = useState(activeUser);
 
-    const [user, setUser] = useState('');
-
-    return (
-        <UserStateProvider value={{user, setUser}}>
-            {children}
-        </UserStateProvider>
-    )
+  return (
+    <UserStateProvider value={{ user, setUser }}>{children}</UserStateProvider>
+  );
 }
 
-export {UserProvider, UserStateContext};
+export { UserProvider, UserStateContext };
