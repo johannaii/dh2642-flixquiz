@@ -53,10 +53,6 @@ const App = ({ authorization, database, model }) => {
     });
   }, []);
 
-  const chooseMovie = (movie) => {
-    setChosenMovie(movie);
-  };
-
   return (
     <Router>
       <Switch>
@@ -90,11 +86,10 @@ const App = ({ authorization, database, model }) => {
           <Highscores
             movies={movies}
             database={database}
-            chooseMovie={chooseMovie}
           />
         </PrivateRoute>
         <PrivateRoute path="/highscores/:movie" isAuthenticated={user}>
-          <Highscore movie={chosenMovie} database={database} />
+          <Highscore database={database} />
         </PrivateRoute>
         <Redirect to="/" />
       </Switch>

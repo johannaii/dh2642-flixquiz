@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
 import HighscoreView from "../view/highscoreView";
+import { MovieStateContext } from "../context/activeMovieContext";
 
-const Highscore = ({ movie, database }) => {
+const Highscore = ({ database }) => {
   const [highscore, setHighscore] = useState([]);
-  const [loading, isLoading] = useState(true);
-  const history = useHistory();
+  const { movie, setMovie } = useContext(MovieStateContext);
 
   useEffect(() => {
     const highscoreList = [];
-    if (movie.id) {
-      database
-        ?.ref("highscore")
-        .child(movie.id)
-        .on("value", (snapshot) => {
-          snapshot.forEach((snap) => {
-            highscoreList.push(snap.val());
-          });
-          setHighscore(highscoreList);
-          isLoading(false);
+    database
+      ?.ref("highscore")
+      .child(movie.id)
+      .on("value", (snapshot) => {
+        snapshot.forEach((snap) => {
+          highscoreList.push(snap.val());
         });
-    } else {
-      history.push("/highscores");
-    }
+        setHighscore(highscoreList);
+      });
   }, []);
 
   return <HighscoreView movie={movie} highscore={highscore} />;
