@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import {auth, db} from "./services/config";
 import MovieModel from './model/MovieModel';
 import {UserProvider} from "./context/activeUserContext";
+import {MovieProvider} from "./context/activeMovieContext";
 import 'semantic-ui-css/semantic.min.css'
 
 ReactDOM.render(
     <React.StrictMode>
-        <UserProvider>
-            <App authorization={auth} database={db} model={MovieModel}/>
-        </UserProvider>
+        <MovieProvider>
+                <UserProvider>
+                    <App authorization={auth} database={db} model={MovieModel}/>
+                </UserProvider>
+        </MovieProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

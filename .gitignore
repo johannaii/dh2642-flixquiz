@@ -108,3 +108,5 @@ src/services/config.js
 
 #IntelliJ
 .idea
+
+src/Credentials.js

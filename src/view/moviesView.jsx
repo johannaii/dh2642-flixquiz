@@ -10,7 +10,7 @@ const MoviesView = ({ movies, chooseMovie }) => (
     </span>
     <div className="cardsName">
       {movies?.map((movie, key) => (
-        <Link to={`/game/${movie.urlid}`} key={movie.urlid}>
+        <Link key={key} to={`/game`}>
           <Card
             key={key}
             className="movieCard"

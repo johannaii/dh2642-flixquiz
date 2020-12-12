@@ -1,12 +1,11 @@
 import React from "react";
 
 const QuizCorrectAnsView = ({
-    currentQuestion,
-    searchTrack,
-    searchAlbum,
+    currentQuestionNum,
     nextQuestion,
-    testIds,
-    findOtherAlternatives,
+    question,
+    correctAlternative,
+    wrongAlternatives,
 }) => {
     // Circle of Life id = "0juMU08O9byWiRBtKM1j5E";
     // Circle of lifes album id ="7e8y48Z2fkJNGBOKSECCeS"
@@ -16,20 +15,16 @@ const QuizCorrectAnsView = ({
 
     return (
         <div>
-            <h1>{"Question #" + (currentQuestion + 1)}</h1>
-            <div>The correct answer was track </div>
+            <h1>{"Question #" + (currentQuestionNum + 1)}</h1>
+            <div>{question}</div>
             <div>
                 {/*Show same order as in quiz and mark red if wrong answer*/}
-                {findOtherAlternatives("7e8y48Z2fkJNGBOKSECCeS")}
-                <button> Track2 </button> {/*wrongAlternatives[0].name*/}
-                <button class="correctAnswer">
-                    {searchTrack(testIds[currentQuestion])}
-                </button>
-                {/*correctAlternative.name*/}
-                <button> Track3 </button> {/*wrongAlternatives[1].name*/}
-                <button> Track4 </button> {/*wrongAlternatives[2].name*/}
+                <button class="correctAnswer">{correctAlternative}</button>
+                <button> {wrongAlternatives[0]} </button>
+                <button> {wrongAlternatives[1]} </button>
+                <button> {wrongAlternatives[2]} </button>
             </div>
-            <button>Next question</button>
+            <button onClick={nextQuestion}>Next question</button>
             {/*This shows after nextQuestion button is pressed */}
         </div>
     );

@@ -10,6 +10,7 @@ import Game from "./presenter/game";
 import Highscores from "./presenter/highscores";
 import Highscore from "./presenter/highscore";
 import Profile from "./presenter/profile";
+import LoadGame from "./presenter/loadGame";
 import { Credentials } from "./Credentials";
 import axios from "axios";
 
@@ -69,10 +70,10 @@ const App = ({ authorization, database, model }) => {
           <Profile database={database} />
         </Route>
         <Route path="/movies">
-          <Movies movies={movies} chooseMovie={chooseMovie} />
+          <Movies movies={movies} />
         </Route>
-        <Route path="/game/">
-          <Game token={token} movie={chosenMovie} />
+        <Route path="/game">
+          <LoadGame token={token} />
         </Route>
         <Route exact path="/highscores">
           <Highscores
