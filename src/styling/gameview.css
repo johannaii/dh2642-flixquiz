@@ -8,6 +8,7 @@
 }
 
 .gameHeader {
+  text-align: center;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 40px;
   font-weight: bold;
@@ -27,6 +28,17 @@
   margin: 0px;
 }
 
+.gameEndScore {
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  color: #FFF;
+  font-style: bold;
+  font-size: 70px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 .songFrame {
   margin: 20px;
 }
@@ -43,4 +55,18 @@
   font-size: 18px;
   text-align: center;
   margin: 15px !important;
+}
+
+.ui.button.gameEndButton {
+  width: 240px;
+  height: 70px;
+  color: #FFFFFF !important;
+  border: solid !important;
+  border-color: #FFF !important;
+  border-width: 3px !important;
+  border-radius: 10px !important;
+  background:  rgba(103, 101, 101, 0.6) !important;
+  font-size: 20px;
+  text-align: center;
+  margin: 40px !important;
 }
