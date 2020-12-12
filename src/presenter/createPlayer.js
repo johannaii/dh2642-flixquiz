@@ -27,6 +27,7 @@ const CreatePlayer = ({ database }) => {
         userId,
       });
       setUser(userId);
+      localStorage.setItem("activeUser", userId);
       history.push("/profile");
     }
   };

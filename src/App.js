@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import "./App.css";
-import DataAdder from "./components/DataAdder";
+import { UserStateContext } from "./context/activeUserContext";
 import Home from "./presenter/home";
 import CreatePlayer from "./presenter/createPlayer";
 import SignIn from "./presenter/signIn";
@@ -13,13 +18,14 @@ import Profile from "./presenter/profile";
 import LoadGame from "./presenter/loadGame";
 import { Credentials } from "./Credentials";
 import axios from "axios";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = ({ authorization, database, model }) => {
   // Spotify get token
   const spotify = Credentials();
   const [token, setToken] = useState("");
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { user, setUser } = useContext(UserStateContext);
   const [chosenMovie, setChosenMovie] = useState("");
 
   useEffect(() => {
@@ -44,7 +50,6 @@ const App = ({ authorization, database, model }) => {
         movieList.push(snap.val());
       });
       setMovies(movieList);
-      setLoading(false);
     });
   }, []);
 
@@ -55,36 +60,43 @@ const App = ({ authorization, database, model }) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <div className="App">
-            <Home database={database} />
-          </div>
-        </Route>
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return user ? (
+              <Redirect to="profile" />
+            ) : (
+              <Home database={database} />
+            );
+          }}
+        ></Route>
         <Route path="/create">
           <CreatePlayer database={database} />
         </Route>
         <Route path="/login">
           <SignIn database={database} />
         </Route>
-        <Route path="/profile">
+        <PrivateRoute path="/profile" isAuthenticated={user}>
           <Profile database={database} />
-        </Route>
-        <Route path="/movies">
+        </PrivateRoute>
+        <PrivateRoute path="/movies" isAuthenticated={user}>
           <Movies movies={movies} />
-        </Route>
-        <Route path="/game">
+        </PrivateRoute>
+        <PrivateRoute path="/game" isAuthenticated={user}>
           <LoadGame token={token} />
-        </Route>
-        <Route exact path="/highscores">
+        </PrivateRoute>
+        <PrivateRoute exact path="/highscores" isAuthenticated={user}>
           <Highscores
             movies={movies}
             database={database}
             chooseMovie={chooseMovie}
           />
-        </Route>
-        <Route path="/highscores/:movie">
+        </PrivateRoute>
+        <PrivateRoute path="/highscores/:movie" isAuthenticated={user}>
           <Highscore movie={chosenMovie} database={database} />
-        </Route>
+        </PrivateRoute>
+        <Redirect to="/" />
       </Switch>
     </Router>
   );
