@@ -27,14 +27,20 @@
   margin: 0px;
 }
 
+.songFrame {
+  margin: 20px;
+}
+
 .ui.button.gameButton {
-  width: 300px;
+  width: 260px;
+  height: 70px;
   color: #FFFFFF !important;
   border: solid !important;
   border-color: #FFF !important;
   border-width: 3px !important;
   border-radius: 10px !important;
-  background:  rgba(96, 156, 169, 0.6) !important;
+  background:  rgba(96, 156, 169, 0.7) !important;
+  font-size: 18px;
   text-align: center;
-  margin: 10px !important;
+  margin: 15px !important;
 }

@@ -39,6 +39,7 @@ const GameView = ({
                 frameBorder="0"
                 allowtransparency="true"
                 allow="encrypted-media"
+                className="songFrame"
             ></iframe>
             {/*random order on these 4*/}
             {/* Randomly pick three others from album */}
