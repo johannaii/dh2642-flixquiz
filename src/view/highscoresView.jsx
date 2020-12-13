@@ -30,7 +30,12 @@ const HighscoresView = ({ movies, chooseMovie, loading }) => (
         ))}
       </div>
     )}
-  </div>
+    <span className="backButton">
+      <Link to="/profile">
+        <img src="https://www.flaticon.com/svg/static/icons/svg/271/271218.svg" alt="Back arrow" height="40x" width="40px"></img>
+      </Link>
+    </span>
+  </div> 
 );
 
 export default HighscoresView;

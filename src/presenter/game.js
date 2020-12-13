@@ -13,6 +13,7 @@ function Game({ trackData, trackTitles, database }) {
   const [loading, setLoading] = useState(true);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const [show, setShow] = useState(false);
   const { user } = useContext(UserStateContext);
   const history = useHistory();
 
@@ -74,6 +75,10 @@ function Game({ trackData, trackTitles, database }) {
     }
   };
 
+  const toggleShow = () => {
+    setShow(!show);
+};
+
   if (!loading) {
     if (!finished) {
       return (
@@ -83,6 +88,8 @@ function Game({ trackData, trackTitles, database }) {
           correctTrackId={currentQuestion.spotifyid}
           answerAlternatives={currentQuestion.options}
           question={currentQuestion.question}
+          toggleShow={toggleShow}
+          show={show}
         />
       );
     } else {
