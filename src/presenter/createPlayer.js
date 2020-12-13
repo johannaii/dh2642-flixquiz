@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 const CreatePlayer = ({ database }) => {
   const [userId, setUserId] = useState(0);
   const { user, setUser } = useContext(UserStateContext);
+  const [userExist, setUserExist] = useState(false);
   const history = useHistory();
 
   const handleUserChange = (e) => {
@@ -21,7 +22,7 @@ const CreatePlayer = ({ database }) => {
 
   const createInput = () => {
     if (userList.find((user) => user.userId === userId)) {
-      console.log("This user already exists");
+      setUserExist(true);
     } else {
       database.ref(`users/`).push().set({
         userId,
@@ -36,6 +37,7 @@ const CreatePlayer = ({ database }) => {
     <CreatePlayerView
       userChange={handleUserChange}
       createPlayer={createInput}
+      userExist={userExist}
     />
   );
 };
