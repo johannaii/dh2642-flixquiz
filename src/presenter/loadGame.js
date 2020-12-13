@@ -53,7 +53,7 @@ function LoadGame({token, database}) {
         return (
             <div>Is loading</div>)
     } else return (
-        <Game trackData={trackData} trackTitles={trackTitles}/>);
+        <Game trackData={trackData} trackTitles={trackTitles} database={database}/>);
 }
 
 export default LoadGame;

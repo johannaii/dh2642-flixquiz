@@ -4,10 +4,11 @@ import QuizCorrectAnswerView from "../view/quizCorrectAnswerView";
 import GameEndView from "../view/gameEndView";
 import axios from "axios";
 import {MovieStateContext} from "../context/activeMovieContext";
+import {UserStateContext} from "../context/activeUserContext";
 import {useHistory} from 'react-router-dom';
 
 
-function Game({trackData, trackTitles}) {
+function Game({trackData, trackTitles, database}) {
 
     const {movie} = useContext(MovieStateContext);
     const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -15,15 +16,16 @@ function Game({trackData, trackTitles}) {
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
     const [finished, setFinished] = useState(false);
+    const {user} = useContext(UserStateContext);
     const history = useHistory();
 
     useEffect(() => {
         if (movie) {
             const answer = movie.questions[currentQuestionNr].answer
                 ? movie.questions[currentQuestionNr].answer
-                : trackData[currentQuestionNr-1].name.split('-')[0];
+                : trackData[currentQuestionNr - 1].name.split('-')[0];
 
-                setCurrentQuestion({
+            setCurrentQuestion({
                 'number': currentQuestionNr,
                 'spotifyid': movie.questions[currentQuestionNr].spotifyid,
                 'question': movie.questions[currentQuestionNr].question,
@@ -55,11 +57,16 @@ function Game({trackData, trackTitles}) {
     // Loads next question/ finishes quiz
     const nextQuestion = (answer) => {
         if (answer === currentQuestion.answer) {
-            setScore(score+10);
+            setScore(score + 10);
         }
         if (currentQuestionNr < movie.questions.length - 1) {
-            setCurrentQuestionNr(currentQuestionNr+1)
+            setCurrentQuestionNr(currentQuestionNr + 1)
         } else {
+            database.ref(`highscore/${movie.id}`).push().set({
+                'movieid': movie.id,
+                'score': score,
+                'user': user,
+            });
             setFinished(true)
         }
     };

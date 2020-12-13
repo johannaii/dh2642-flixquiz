@@ -84,7 +84,7 @@ const App = ({ authorization, database, model }) => {
           <Movies movies={movies} />
         </PrivateRoute>
         <PrivateRoute path="/game" isAuthenticated={user}>
-          <LoadGame token={token} />
+          <LoadGame token={token} database={database} />
         </PrivateRoute>
         <PrivateRoute exact path="/highscores" isAuthenticated={user}>
           <Highscores
