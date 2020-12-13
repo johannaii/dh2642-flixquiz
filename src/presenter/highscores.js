@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import HighscoresView from "../view/highscoresView";
+import {MovieStateContext} from "../context/activeMovieContext";
 
-const Highscores = ({ movies, chooseMovie }) => {
+const Highscores = ({ movies }) => {
   const [availableMovies, setAvailableMovies] = useState(movies);
+  const {movie, setMovie} = useContext(MovieStateContext);
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const Highscores = ({ movies, chooseMovie }) => {
   return (
     <HighscoresView
       movies={availableMovies}
-      chooseMovie={chooseMovie}
+      chooseMovie={setMovie}
       loading={loading}
     />
   );
