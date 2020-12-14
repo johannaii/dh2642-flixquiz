@@ -18,6 +18,23 @@
     border: 2px solid rgb(255, 255, 255);
 }
 
+@media (max-width: 500px) {
+    .modal_content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        top: unset;
+        left: unset;
+    }
+
+    .modal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}
+
 .noButton {
     color: #ffffff !important;
     border: solid !important;
@@ -41,7 +58,7 @@
 .popUpHeader {
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
     color: #fff;
 }
