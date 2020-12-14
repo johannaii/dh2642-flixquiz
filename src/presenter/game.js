@@ -15,6 +15,7 @@ function Game({ trackData, trackTitles, database }) {
   const [finished, setFinished] = useState(false);
   const [show, setShow] = useState(false);
   const { user } = useContext(UserStateContext);
+  const [percentage, setPercentage] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
@@ -73,6 +74,7 @@ function Game({ trackData, trackTitles, database }) {
         score: newScore,
         user: user,
       });
+      setPercentage(newScore / (currentQuestionNr*10))
       setFinished(true);
     }
   };
@@ -95,7 +97,7 @@ function Game({ trackData, trackTitles, database }) {
         />
       );
     } else {
-      return <GameEndView score={score} movie={movie} />;
+      return <GameEndView score={score} movie={movie} percentage={percentage} />;
     }
   } else return <LoadingView />;
 }

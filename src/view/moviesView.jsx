@@ -27,7 +27,8 @@ const MoviesView = ({movies, chooseMovie, loading}) => (
                                 chooseMovie(movie);
                             }}
                         >
-                            {movie.title}
+                            <p>{movie.title}</p>
+                            <p className="fontsize15">{movie.questions.length-1} questions</p>
                         </Card>
                     </Link>
                 ))}
