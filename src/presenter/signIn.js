@@ -7,6 +7,7 @@ const SignIn = ({ database }) => {
   const [userId, setUserId] = useState(0);
   const { user, setUser } = useContext(UserStateContext);
   const history = useHistory();
+  const [userNotExist, setUserNotExist] = useState(false);
 
   const userList = [];
   database?.ref("users").on("value", (snapshot) => {
@@ -21,18 +22,16 @@ const SignIn = ({ database }) => {
 
   const createInput = () => {
     if (userList.find((user) => user.userId === userId)) {
-      console.log("Great!");
-      console.log(userId);
       setUser(userId);
       localStorage.setItem("activeUser", userId);
       history.push("/profile");
     } else {
-      console.log("This user doesn't exist");
+      setUserNotExist(true);
     }
   };
 
   return (
-    <SignInView userChange={handleUserChange} createPlayer={createInput} />
+    <SignInView userChange={handleUserChange} createPlayer={createInput} userNotExist={userNotExist} />
   );
 };
 

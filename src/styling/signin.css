@@ -18,6 +18,16 @@
   margin-bottom: 10px;
 }
 
+.errorText {
+  text-align: center;
+  line-height: 1.2;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  color: #FFF;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .ui.button.sign {
   font-size: 20px !important;
   color: #609CA9 !important;
