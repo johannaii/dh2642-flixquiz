@@ -2,6 +2,9 @@ import React from "react";
 import "../styling/gameview.css";
 import {Button} from "semantic-ui-react";
 import PopUp from "../components/PopUp";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {width} from "@fortawesome/free-solid-svg-icons/faAt";
 
 const GameView = ({
                       currentQuestionNum,
@@ -12,20 +15,7 @@ const GameView = ({
                       toggleShow,
                       show
                   }) => {
-    //console.log("In game view:");
-    //console.log(answerAlternatives);
-    // Circle of Life id = "0juMU08O9byWiRBtKM1j5E";
-    // Circle of lifes album id ="7e8y48Z2fkJNGBOKSECCeS"
 
-    // Life id = "6hdEgJdm3FFLvssWuoXKdV"
-    // const testId = "0juMU08O9byWiRBtKM1j5E";
-
-    // You can find an id of a spotify song through spotify by copying song URI
-    // You do this by rightclicking on a song, press share and copying the URI
-    // You get for example spotify:track:22KvbVZLVA9aY7zsRWK0fw
-    // The id is then 22KvbVZLVA9aY7zsRWK0fw
-    // To play the demo of the song just get the iframe and set id
- 
     return (
         <div className="gameWrapper">
       <span className="gameHeader">
@@ -41,26 +31,22 @@ const GameView = ({
                 height="80"
                 frameBorder="0"
                 allowtransparency="true"
-                allow="encrypted-media" 
+                allow="encrypted-media"
                 className="songFrame"
             ></iframe>
-            {/*random order on these 4*/}
-            {/* Randomly pick three others from album */}
+
             {answerAlternatives.map((answer, index) => (
                 <Button key={index} onClick={() => nextQuestion(answer)} className="gameButton">
                     {answer}
                 </Button>
             ))}
             <span className="backButton">
-                <img onClick={toggleShow} src="https://www.flaticon.com/svg/static/icons/svg/271/271218.svg" alt="Back arrow" height="40x" width="40px"></img>
+                <FontAwesomeIcon icon={faArrowLeft} onClick={toggleShow} className="backButtonGame" />
             </span>
-            {show ? <PopUp toggle={toggleShow} /> : null}
+            {show ? <PopUp toggle={toggleShow}/> : null}
         </div>
     );
 };
 
 export default GameView;
-
-// We can also have name of song then 4 to listen to
-// Or just random ass questions
 

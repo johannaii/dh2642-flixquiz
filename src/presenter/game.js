@@ -15,6 +15,7 @@ function Game({ trackData, trackTitles, database }) {
   const [finished, setFinished] = useState(false);
   const [show, setShow] = useState(false);
   const { user } = useContext(UserStateContext);
+  const [percentage, setPercentage] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
@@ -60,17 +61,20 @@ function Game({ trackData, trackTitles, database }) {
 
   // Loads next question/ finishes quiz
   const nextQuestion = (answer) => {
+    let newScore = score;
     if (answer === currentQuestion.answer) {
-      setScore(score + 10);
+      newScore = score + 10;
+      setScore(newScore);
     }
     if (currentQuestionNr < movie.questions.length - 1) {
       setCurrentQuestionNr(currentQuestionNr + 1);
     } else {
       database.ref(`highscore/${movie.id}`).push().set({
         movieid: movie.id,
-        score: score,
+        score: newScore,
         user: user,
       });
+      setPercentage(newScore / (currentQuestionNr*10))
       setFinished(true);
     }
   };
@@ -93,7 +97,7 @@ function Game({ trackData, trackTitles, database }) {
         />
       );
     } else {
-      return <GameEndView score={score} movie={movie} />;
+      return <GameEndView score={score} movie={movie} percentage={percentage} />;
     }
   } else return <LoadingView />;
 }
