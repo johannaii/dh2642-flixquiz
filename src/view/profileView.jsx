@@ -15,7 +15,7 @@ const ProfileView = ({ username, logOut }) => (
       <Link to="/">
         <Button onClick={() => logOut()} className="logOutButton" size="massive" > Log out</Button>
       </Link>
-  </div>
+  </div> 
 );
 
 export default ProfileView;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styling/highscoreview.css";
 
 const HighscoreView = ({ movie, highscore }) => (
@@ -24,7 +25,10 @@ const HighscoreView = ({ movie, highscore }) => (
           ))}
         </tbody>
       </table>
-    </div>
+    </div>  
+    <Link to="/highscores">
+      <img src="https://www.flaticon.com/svg/static/icons/svg/271/271218.svg" alt="Back arrow" height="40x" width="40px"></img>
+    </Link>
   </div>
 );
 
