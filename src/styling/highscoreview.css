@@ -74,3 +74,14 @@ th, td {
   text-align: center;
   padding: 5px;
 }
+
+.backButtonHighscore {
+  height: 40px !important;
+  width: 40px !important;
+  padding: 0 !important;
+  color: #767474;
+}
+
+.backButtonContainer {
+  padding-top: 10px;
+}

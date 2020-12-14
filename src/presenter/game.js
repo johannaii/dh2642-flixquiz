@@ -60,15 +60,17 @@ function Game({ trackData, trackTitles, database }) {
 
   // Loads next question/ finishes quiz
   const nextQuestion = (answer) => {
+    let newScore = score;
     if (answer === currentQuestion.answer) {
-      setScore(score + 10);
+      newScore = score + 10;
+      setScore(newScore);
     }
     if (currentQuestionNr < movie.questions.length - 1) {
       setCurrentQuestionNr(currentQuestionNr + 1);
     } else {
       database.ref(`highscore/${movie.id}`).push().set({
         movieid: movie.id,
-        score: score,
+        score: newScore,
         user: user,
       });
       setFinished(true);

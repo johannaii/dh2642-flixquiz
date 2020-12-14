@@ -59,6 +59,13 @@
     margin: 20px !important;
 }
 
-.backButton {
+.backButtonMovies {
+    height: 40px !important;
+    width: 40px !important;
+    padding: 0 !important;
+    color: #D795A3;
+}
+
+.backButtonContainer {
     padding-top: 10px;
 }

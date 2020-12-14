@@ -18,7 +18,7 @@ const Highscore = ({ database }) => {
           snapshot.forEach((snap) => {
             highscoreList.push(snap.val());
           });
-          setHighscore(highscoreList);
+          setHighscore(highscoreList.sort(compareHighscore).slice(0,10));
         });
     } else {
       history.push("/highscores")
@@ -27,4 +27,17 @@ const Highscore = ({ database }) => {
 
   return <HighscoreView movie={movie} highscore={highscore} />;
 };
+
+const compareHighscore = (a, b) => {
+  let ai = a.score;
+  let bi = b.score;
+  if (ai > bi) {
+    return -1;
+  } else if (ai < bi) {
+    return 1;
+  } else {
+    return 0;
+  }
+};
+
 export default Highscore;

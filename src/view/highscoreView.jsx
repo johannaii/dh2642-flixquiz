@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styling/highscoreview.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 const HighscoreView = ({ movie, highscore }) => (
   <div className={"highscoreWrapper"}>
@@ -16,7 +18,7 @@ const HighscoreView = ({ movie, highscore }) => (
           </tr>
         </thead>
         <tbody>
-          {highscore?.sort(compareHighscore).map((user, key) => (
+          {highscore?.map((user, key) => (
             <tr>
               <td>{key + 1}</td>
               <td>{user.user} </td>
@@ -25,23 +27,14 @@ const HighscoreView = ({ movie, highscore }) => (
           ))}
         </tbody>
       </table>
-    </div>  
+    </div>
+      <div className="backButtonContainer">
     <Link to="/highscores">
-      <img src="https://www.flaticon.com/svg/static/icons/svg/271/271218.svg" alt="Back arrow" height="40x" width="40px"></img>
+        <FontAwesomeIcon icon={faArrowLeft} className="backButtonHighscore"/>
     </Link>
+      </div>
   </div>
 );
 
-const compareHighscore = (a, b) => {
-  let ai = a.score;
-  let bi = b.score;
-  if (ai > bi) {
-    return -1;
-  } else if (ai < bi) {
-    return 1;
-  } else {
-    return 0;
-  }
-};
 
 export default HighscoreView;

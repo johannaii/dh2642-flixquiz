@@ -70,3 +70,14 @@
   text-align: center;
   margin: 40px !important;
 }
+
+.backButtonGame {
+  height: 40px !important;
+  width: 40px !important;
+  padding: 0 !important;
+  color: #72A7B1;
+}
+
+.backButtonContainer {
+  padding-top: 10px;
+}
