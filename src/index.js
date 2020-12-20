@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {auth, db} from "./services/config";
-import MovieModel from './model/MovieModel';
 import {UserProvider} from "./context/activeUserContext";
 import {MovieProvider} from "./context/activeMovieContext";
 import 'semantic-ui-css/semantic.min.css'
@@ -13,7 +12,7 @@ ReactDOM.render(
     <React.StrictMode>
         <MovieProvider>
                 <UserProvider>
-                    <App authorization={auth} database={db} model={MovieModel}/>
+                    <App authorization={auth} database={db}/>
                 </UserProvider>
         </MovieProvider>
     </React.StrictMode>,

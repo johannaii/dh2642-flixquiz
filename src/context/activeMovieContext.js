@@ -1,17 +1,16 @@
-import React, {useState, createContext} from 'react';
+import React, { useState, createContext } from "react";
 
-const MovieStateContext = createContext('');
+const MovieStateContext = createContext("");
 const MovieStateProvider = MovieStateContext.Provider;
 
-function MovieProvider({children}) {
+function MovieProvider({ children }) {
+  const [movie, setMovie] = useState("");
 
-    const [movie, setMovie] = useState('');
-
-    return (
-        <MovieStateProvider value={{movie, setMovie}}>
-            {children}
-        </MovieStateProvider>
-    )
+  return (
+    <MovieStateProvider value={{ movie, setMovie }}>
+      {children}
+    </MovieStateProvider>
+  );
 }
 
-export {MovieProvider, MovieStateContext};
+export { MovieProvider, MovieStateContext };

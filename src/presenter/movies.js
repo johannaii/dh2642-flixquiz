@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MoviesView from "../view/moviesView";
-import {MovieStateContext} from "../context/activeMovieContext";
+import { MovieStateContext } from "../context/activeMovieContext";
 
-const Movies = ({ movies }) => {
+function Movies({ movies }) {
   const [availableMovies, setAvailableMovies] = useState(movies);
-  const {setMovie} = useContext(MovieStateContext);
+  const { setMovie } = useContext(MovieStateContext);
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
@@ -21,5 +21,5 @@ const Movies = ({ movies }) => {
       loading={loading}
     />
   );
-};
+}
 export default Movies;

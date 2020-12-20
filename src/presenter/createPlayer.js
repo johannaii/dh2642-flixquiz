@@ -3,7 +3,7 @@ import CreatePlayerView from "../view/createPlayerView";
 import { UserStateContext } from "../context/activeUserContext";
 import { useHistory } from "react-router-dom";
 
-const CreatePlayer = ({ database }) => {
+function CreatePlayer({ database }) {
   const [userId, setUserId] = useState(0);
   const { user, setUser } = useContext(UserStateContext);
   const [userExist, setUserExist] = useState(false);
@@ -40,6 +40,6 @@ const CreatePlayer = ({ database }) => {
       userExist={userExist}
     />
   );
-};
+}
 
 export default CreatePlayer;

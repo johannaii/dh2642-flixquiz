@@ -11,7 +11,6 @@ import Home from "./presenter/home";
 import CreatePlayer from "./presenter/createPlayer";
 import SignIn from "./presenter/signIn";
 import Movies from "./presenter/movies";
-import Game from "./presenter/game";
 import Highscores from "./presenter/highscores";
 import Highscore from "./presenter/highscore";
 import Profile from "./presenter/profile";
@@ -20,13 +19,12 @@ import { Credentials } from "./Credentials";
 import axios from "axios";
 import PrivateRoute from "./components/PrivateRoute";
 
-const App = ({ authorization, database, model }) => {
+const App = ({ authorization, database }) => {
   // Spotify get token
   const spotify = Credentials();
   const [token, setToken] = useState("");
   const [movies, setMovies] = useState([]);
   const { user, setUser } = useContext(UserStateContext);
-  const [chosenMovie, setChosenMovie] = useState("");
 
   useEffect(() => {
     axios("https://accounts.spotify.com/api/token", {
@@ -83,10 +81,7 @@ const App = ({ authorization, database, model }) => {
           <LoadGame token={token} database={database} />
         </PrivateRoute>
         <PrivateRoute exact path="/highscores" isAuthenticated={user}>
-          <Highscores
-            movies={movies}
-            database={database}
-          />
+          <Highscores movies={movies} database={database} />
         </PrivateRoute>
         <PrivateRoute path="/highscores/:movie" isAuthenticated={user}>
           <Highscore database={database} />

@@ -3,7 +3,7 @@ import SignInView from "../view/signInView";
 import { UserStateContext } from "../context/activeUserContext";
 import { useHistory } from "react-router-dom";
 
-const SignIn = ({ database }) => {
+function SignIn({ database }) {
   const [userId, setUserId] = useState(0);
   const { user, setUser } = useContext(UserStateContext);
   const history = useHistory();
@@ -31,8 +31,12 @@ const SignIn = ({ database }) => {
   };
 
   return (
-    <SignInView userChange={handleUserChange} createPlayer={createInput} userNotExist={userNotExist} />
+    <SignInView
+      userChange={handleUserChange}
+      createPlayer={createInput}
+      userNotExist={userNotExist}
+    />
   );
-};
+}
 
 export default SignIn;

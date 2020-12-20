@@ -46,16 +46,16 @@
 
 .ui.button.gameButton {
   width: 260px;
-  height: 70px;
+  height: 80px;
   color: #FFFFFF !important;
   border: solid !important;
   border-color: #FFF !important;
   border-width: 3px !important;
   border-radius: 10px !important;
   background:  rgba(96, 156, 169, 0.7) !important;
-  font-size: 18px;
+  font-size: 17px;
   text-align: center;
-  margin: 15px !important;
+  margin: 10px !important;
 }
 
 .ui.button.gameEndButton {

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomeView from "../view/homeView";
 
-const Home = ({ database }) => {
+function Home() {
   return <HomeView />;
-};
+}
 
 export default Home;

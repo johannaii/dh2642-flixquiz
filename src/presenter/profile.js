@@ -3,7 +3,7 @@ import { UserStateContext } from "../context/activeUserContext";
 import { useHistory } from "react-router-dom";
 import ProfileView from "../view/profileView";
 
-const Profile = ({ database }) => {
+function Profile({ database }) {
   const { user, setUser } = useContext(UserStateContext);
   const [highscore, setHighscore] = useState("");
   const history = useHistory();

@@ -3,7 +3,7 @@ import HighscoreView from "../view/highscoreView";
 import { MovieStateContext } from "../context/activeMovieContext";
 import { useHistory } from "react-router-dom";
 
-const Highscore = ({ database }) => {
+function Highscore({ database }) {
   const [highscore, setHighscore] = useState([]);
   const { movie, setMovie } = useContext(MovieStateContext);
   const history = useHistory();
@@ -18,15 +18,15 @@ const Highscore = ({ database }) => {
           snapshot.forEach((snap) => {
             highscoreList.push(snap.val());
           });
-          setHighscore(highscoreList.sort(compareHighscore).slice(0,10));
+          setHighscore(highscoreList.sort(compareHighscore).slice(0, 10));
         });
     } else {
-      history.push("/highscores")
+      history.push("/highscores");
     }
   }, []);
 
   return <HighscoreView movie={movie} highscore={highscore} />;
-};
+}
 
 const compareHighscore = (a, b) => {
   let ai = a.score;
